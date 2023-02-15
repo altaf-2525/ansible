@@ -33,7 +33,8 @@ HOST_01_NAME=$(grep "host_01_name:" env_vars.yml | awk '{print $2}')
 echo $HOST_01_NAME >> ~/ansible/inventory/hosts
 
 # set environment variables from env_vars.yml
-HOST_01=$(grep "host_01:" env_vars.yml | awk '{print $2}')
+HOST_01=$(awk '/host_01:/ {print $2, $3}' env_vars.yml)
+#HOST_01=$(grep "host_01:" env_vars.yml | awk '{print $2}')
 
 # add hosts to the Ansible inventory file
 echo $HOST_01 >> ~/ansible/inventory/hosts
